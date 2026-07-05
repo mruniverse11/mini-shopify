@@ -3,7 +3,7 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-  "fullName": "Enya D.",
-  "email": "enya.d@gmail.com",
-  "password": "1234"
+  "fullName": "",
+  "email": "not-an-email",
+  "password": "123"
 }
