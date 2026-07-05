@@ -6,6 +6,9 @@ import com.minishopify.auth.entity.Role;
 import com.minishopify.auth.entity.User;
 import com.minishopify.auth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +18,7 @@ import java.time.LocalDateTime;
 public class AuthService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public RegisterResponse register(RegisterRequest request) {
 
@@ -25,7 +29,7 @@ public class AuthService {
         User user = User.builder()
                 .fullName(request.getFullName())
                 .email(request.getEmail())
-                .passwordHash(request.getPassword())
+                .passwordHash(passwordEncoder.encode(request.getPassword()))
                 .role(Role.MERCHANT)
                 .createdAt(LocalDateTime.now())
                 .build();
