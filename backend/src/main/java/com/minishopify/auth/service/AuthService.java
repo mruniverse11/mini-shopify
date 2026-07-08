@@ -13,9 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.minishopify.auth.dto.LoginRequest;
-import com.minishopify.auth.dto.LoginResponse;
-
 import java.time.LocalDateTime;
 
 @Service

@@ -3,7 +3,25 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-  "fullName": "",
-  "email": "not-an-email",
-  "password": "123"
+  "fullName": "Alice Bianchi",
+  "email": "alice@fountains.com",
+  "password": "password123"
+}
+
+### Login Merchant
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "alice@fountains.com",
+  "password": "password123"
+}
+
+### Create Store
+POST http://localhost:8080/api/stores?ownerId=1
+Content-Type: application/json
+
+{
+  "storeName": "Alice Fashion",
+  "description": "Modern fashion store"
 }
