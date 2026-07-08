@@ -1,5 +1,7 @@
 package com.minishopify.auth.service;
 
+import com.minishopify.auth.dto.LoginRequest;
+import com.minishopify.auth.dto.LoginResponse;
 import com.minishopify.auth.dto.RegisterRequest;
 import com.minishopify.auth.dto.RegisterResponse;
 import com.minishopify.auth.entity.Role;
@@ -10,6 +12,9 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.minishopify.auth.dto.LoginRequest;
+import com.minishopify.auth.dto.LoginResponse;
 
 import java.time.LocalDateTime;
 
@@ -43,5 +48,22 @@ public class AuthService {
                 .role(savedUser.getRole().name())
                 .message("Merchant registered successfully")
                 .build();
+    }
+
+    public LoginResponse login(LoginRequest request) {
+    User user = userRepository.findByEmail(request.getEmail())
+            .orElseThrow(() -> new RuntimeException("Invalid email or password"));
+
+    if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
+        throw new RuntimeException("Invalid email or password");
+    }
+
+    return LoginResponse.builder()
+            .id(user.getId())
+            .fullName(user.getFullName())
+            .email(user.getEmail())
+            .role(user.getRole().name())
+            .message("Login successful")
+            .build();
     }
 }
