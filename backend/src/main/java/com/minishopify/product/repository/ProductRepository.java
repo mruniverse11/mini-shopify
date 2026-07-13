@@ -1,12 +1,14 @@
 package com.minishopify.product.repository;
 
 import com.minishopify.product.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import com.minishopify.store.entity.Store;
+import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findByStore(Store store);
+
+    List<Product> findByStoreId(Long storeId);
+
+    Optional<Product> findByIdAndStoreId(Long productId, Long storeId);
 }

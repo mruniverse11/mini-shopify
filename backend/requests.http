@@ -3,8 +3,8 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-  "fullName": "Alice Bianchi",
-  "email": "alice@fountains.com",
+  "fullName": "Sheena McCarthy",
+  "email": "sheena@fountains.com",
   "password": "password123"
 }
 
@@ -13,7 +13,7 @@ POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "alice@fountains.com",
+  "email": "sheena@fountains.com",
   "password": "password123"
 }
 
@@ -24,4 +24,16 @@ Content-Type: application/json
 {
   "storeName": "Alice Fashion",
   "description": "Modern fashion store"
+}
+
+### Create Product
+POST http://localhost:8080/api/stores/1/products
+Content-Type: application/json
+
+{
+  "name": "Classic Hoodie",
+  "description": "Heavyweight cotton hoodie",
+  "price": 59.99,
+  "stockQuantity": 25,
+  "imageUrl": "https://share.google/aVVJO7JTYCFlyeYf9"
 }
