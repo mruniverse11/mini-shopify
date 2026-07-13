@@ -41,4 +41,15 @@ public class GlobalExceptionHandler {
                 .path("N/A") // You can customize this to get the actual path if needed
                 .build();
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiError handleResourceNotFound(ResourceNotFoundException ex) {
+        return ApiError.builder()
+            .timestamp(LocalDateTime.now())
+            .status(HttpStatus.NOT_FOUND.value())
+            .error(ex.getMessage())
+            .validationErrors(null)
+            .build();
+    }
 }

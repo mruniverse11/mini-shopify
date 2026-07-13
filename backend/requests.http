@@ -37,3 +37,27 @@ Content-Type: application/json
   "stockQuantity": 25,
   "imageUrl": "https://share.google/aVVJO7JTYCFlyeYf9"
 }
+
+### List Store Products
+GET http://localhost:8080/api/stores/1/products
+
+### Get Product
+GET http://localhost:8080/api/stores/1/products/1
+
+### Update Product
+PUT http://localhost:8080/api/stores/1/products/1
+Content-Type: application/json
+
+{
+  "name": "Premium Classic Hoodie",
+  "description": "Premium heavyweight cotton hoodie",
+  "price": 69.99,
+  "stockQuantity": 20,
+  "imageUrl": "https://example.com/premium-hoodie.jpg"
+}
+
+### Delete Product
+DELETE http://localhost:8080/api/stores/1/products/1
+
+### Public Storefront
+GET http://localhost:8080/api/public/stores/alice-fashion

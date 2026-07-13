@@ -8,6 +8,7 @@ import com.minishopify.store.entity.Store;
 import com.minishopify.store.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import com.minishopify.exception.ResourceNotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -76,7 +77,8 @@ public class ProductService {
 
     private Store findStore(Long storeId) {
         return storeRepository.findById(storeId)
-                .orElseThrow(() -> new RuntimeException("Store not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Store not found"));
+
     }
 
     private Product findProduct(Long storeId, Long productId) {

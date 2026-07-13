@@ -9,6 +9,7 @@ import com.minishopify.store.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import com.minishopify.exception.ResourceNotFoundException;
 import java.time.LocalDateTime;
 
 @Service
@@ -20,16 +21,16 @@ public class StoreService {
 
     public StoreResponse createStore(Long ownerId, StoreRequest request) {
         User owner = userRepository.findById(ownerId)
-                .orElseThrow(() -> new RuntimeException("Owner not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Owner not found"));
 
         if (storeRepository.findByOwner(owner).isPresent()) {
-            throw new RuntimeException("Merchant already has a store");
+            throw new ResourceNotFoundException("Merchant already has a store");
         }
 
         String slug = generateSlug(request.getStoreName());
 
         if (storeRepository.existsBySlug(slug)) {
-            throw new RuntimeException("Store slug already exists");
+            throw new ResourceNotFoundException("Store slug already exists");
         }
 
         Store store = Store.builder()
